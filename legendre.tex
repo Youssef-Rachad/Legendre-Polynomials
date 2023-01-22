@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts, framed}
+\usepackage[left=1.5cm]{geometry}
+\title{Legendre Polynomials}
+\date{Jan 21, 2023 - \today}
+\begin{document}
+\maketitle
+    \section{What is a Legendre Polynomial}
+    \begin{itemize}
+        \item Legendre polynomials of the first kind are also referred to as zonal harmonics
+        \item They are part of the general solution to Legendre's differential equation
+        \item The nth polynomial is of order $n$
+            \begin{equation}
+                P_n(x) \sim x^n
+            \end{equation}
+        \item An interesting property is that Legendre polynomials are orthogonal over the interval $I = [-1;1]$ and satisfy
+            \begin{equation}
+                \int_{-1}^{1} P_m(x)P_n(x) \mathrm{dx} = \frac{2}{2n+1}\delta_{mn}
+            \end{equation}
+        \item They also satisfy
+            \begin{equation}
+                P_n(1) = 1 \label{Eq:unitary}
+            \end{equation}
+    \end{itemize}
+    \section{Generating Legendre Polynomials}
+    \begin{itemize}
+        \item Given the first two Legendre polynomials
+            \begin{align}
+                P_0(x) &= 1\\
+                P_1(x) &= x
+            \end{align}
+            We can generate a sequence of polynomials by generating $n+1$ equations and solving for the coefficients using the inner product of known polynomials
+    \end{itemize}
+    \begin{leftbar}
+        \subsection{$P_2$}
+        \begin{itemize}
+            \item We assume that $P_2$ has the form $ax^2+bx+c$
+                \begin{align}
+                    \int_{-1}^{1} (1)P_2 \mathrm{dx} &= \frac{ax^3}{3}+\frac{bx^2}{2}+cx\bigg|_{-1}^{1}\\
+                    &= \frac{2a}{3}+2c = 0 \\
+                    \int_{-1}^{1} (x)P_2 \mathrm{dx} &= \frac{ax^4}{4}+\frac{bx^3}{3}+\frac{cx^2}{2}\bigg|_{-1}^{1} \\
+                    &= \frac{2b}{3} = 0 \implies b = 0
+                \end{align}
+            \item Using the property from Equation (\ref{Eq:unitary}) we also find
+                \begin{equation}
+                    a+c=1
+                \end{equation}
+        \end{itemize}
+        Finally we arrive at
+        \begin{equation}
+            P_2(x) = \frac{1}{2}(3x^2-1)
+        \end{equation}
+    \end{leftbar}
+    \begin{leftbar}
+        \subsection{$P_3$}
+        \begin{itemize}
+            \item We can similarily find $P_3$
+            \item Assuming the form $P_3 = ax^3 + bx^2 +cx + d$
+                \begin{align}
+                    \int_{_1}^{1} (1)P_3 \mathrm{dx} &= \frac{ax^4}{4}+\frac{bx^3}{3}+\frac{cx^2}{2}+dx\bigg|_{-1}^{1}\\
+                                                     &= \frac{2b}{3}+2d = 0 \label{Eq:P3res1} \\
+                    \int_{-1}^{1} (x)P_3 \mathrm{dx} &= \frac{ax^5}{5} + \frac{bx^4}{4}+\frac{cx^3}{3}+\frac{dx^2}{2}\bigg|_{-1}^{1}\\
+                                                     &= \frac{2a}{5}+\frac{2c}{3}=0 \label{Eq:P3res2} \\
+    \int_{-1}^{1} \frac{1}{2}(3x^2-1)P_3 \mathrm{dx} &= \frac{1}{2} \int_{-1}^{1} 3ax^5 + 3bx^4 + 3cx^3 + 3dx^2-ax^3-bx^2-cx-d\, \mathrm{dx} \\
+                                                     &= \frac{3ax^6}{6}+\frac{3bx^5}{5}+\frac{(3c-a)x^4}{4} + \frac{(3d-b)x^3}{3}-\frac{cx^2}{2}-dx\big|_{-1}^{1} \\
+                                                     &= \frac{6b}{5}+\frac{6d-2b}{3}-2d =0 \label{Eq:P3res3}
+                \end{align}
+            \item Again we can find
+                \begin{equation}
+                    a + b + c +d =1
+                \end{equation}
+            \item Note that Step (\ref{Eq:P3res3}) and by extension Step (\ref{Eq:P3res1}) yield
+                \begin{equation}
+                    b=0\quad d=0
+                \end{equation}
+            \item Step (\ref{Eq:P3res2}) and evaluating $P_3(1)$ then yield
+                \begin{equation}
+                    c = -\frac{3}{2}\quad a=\frac{5}{2}
+                \end{equation}
+        \end{itemize}
+        We arrive at
+        \begin{equation}
+            P_3(x) = \frac{1}{2}(5x^3-3x)
+        \end{equation}
+    \end{leftbar}
+    \end{document}
