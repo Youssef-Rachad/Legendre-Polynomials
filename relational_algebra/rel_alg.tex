@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts, framed}
+\usepackage[left=1.5cm]{geometry}
+\title{Coordinate Systems}
+\date{Jan 29, 2023 - \today}
+\begin{document}
+\maketitle
+\section{Introduction}
+\begin{itemize}
+    \item Relational Algebra is a basic set of operations for the relational model
+    \item Expressions are compositions of relation algebra operations possible due to closure
+    \item It's used as the model for SQL
+\end{itemize}
+\section{Select Operator}
+\begin{itemize}
+    \item Unary operator that returns subset of tuples from a relation given a selection condition
+    \item Denote
+        \begin{equation}
+            \sigma_{\text{condition}}(R)
+        \end{equation}
+    \item In SQL we can express this as
+        \begin{verbatim}
+            SELECT *
+            FROM R
+            WHERE <condition>
+        \end{verbatim}
+    \item Selection cannot produce duplicates (relational model is set-based)
+    \item
+        \begin{equation}
+            \sigma_{c_2}(\sigma_{c_1}(R)) = \sigma_{c_1}(\sigma_{c_2}(R))
+    \end{equation}
+    \begin{equation}
+        \sigma_{c_2}(\sigma_{c_1}(R))  =\sigma_{c_1 AND c_2}(R)
+    \end{equation}
+\item Define the selectivity as the fraction of tuples selected by the selection condition
+\end{itemize}
+\section{Project Operator}
+\begin{itemize}
+    \item Unary operator that keeps specified attributes and discards others
+    \item Denote
+        \begin{equation}
+            \pi_{\text{attributes}}(R)
+        \end{equation}
+    \item By nature, project returns a set of distinct tuples
+    \item In SQL, we can express this as
+        \begin{verbatim}
+            SELECT DISTINCT <attributes>
+            FROM R
+        \end{verbatim}
+    \item \textit{Note} $\pi_L(R)$ is only defined if $L\subseteq attr(R)$
+    \item
+        \begin{equation}
+            \pi_{L_2}(\pi_{L_1}(R)) = \pi_{L_2}(R)
+        \end{equation}
+        \begin{equation}
+            \pi_L(\sigma_C(R)) = \sigma_C(\pi_L(R))
+        \end{equation}
+    \item Define the degree as the number of attributes in projected attribute list
+\end{itemize}
+\section{Set Theory}
+\begin{itemize}
+    \item Many operators from set theory are also found in relational algebra
+    \item Union and Intersection
+    \item Difference $R-S$ returns the elements in R but not in S (complement of S union complement R)
+\end{itemize}
+\section{Cross Product}
+\begin{itemize}
+    \item Binary operator that returns all combinations of elements in A and B
+    \item The resultant has degree equal to the sum of operand degrees and number of tuples equal to the product
+    \item Relations do not have to be union compatible
+\end{itemize}
+\section{Renaming}
+\begin{itemize}
+    \item Unary operator that can rename relation, attributes or both
+    \item Denote
+        \begin{equation}
+            \rho_{S(B_1,\dots,B_n)}(R)
+        \end{equation}
+    \item eg. Pairing upper years with F!rosh
+        \begin{equation}
+            \rho_{Mentor(senior, class)}(\sigma_{year>2}(Student))\times\sigma_{year = 1}(Student)
+        \end{equation}
+\end{itemize}
+\section{Inner Join Operator}
+\begin{itemize}
+    \item Binary operator that crosses two relations and applies a selection condition
+    \item Denote
+        \begin{equation}
+            R\bowtie_{condition}S = \sigma_{condition}(R\times S)
+        \end{equation}
+\end{itemize}
+learning from https://cs.uwaterloo.ca/\~tozsu/courses/CS338/lectures/5\%20Rel\%20Algebra.pdf
+\end{document}
+
