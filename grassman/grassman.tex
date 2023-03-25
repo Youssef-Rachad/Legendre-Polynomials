@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{../math}
+\begin{document}
+\section{Grassman numbers}
+\begin{itemize}
+    \item Are tired of integration? Do you enjoy derivatives instead? Boy do I have the number for you!!
+    \item Grassman numbers are named after Hermann Grassman and used in quantum field theory to describe fermions
+    \item The first property of Grassman numbers is anticommutivity under multiplication
+        \begin{equation}
+            \eta_1\eta_2 = -\eta_2\eta_1
+        \end{equation}
+    \item This has the interesting consequence that the square, and by extension any higher power, of a Grassman number is 0 since
+        \begin{equation}
+            \eta_1\eta_2 = -\eta_2\eta_1 = 0
+        \end{equation}
+    \item Thus we can only express functions of Grassman numbers in the form
+        \begin{equation}
+            f(\eta) = a_0 + a_1\eta \quad (a_0, a_1) \in\mathbb{C}
+        \end{equation}
+    \item The derivative of a Grassman function works as usual, with the added constraint that the operator must be adjacent to the matching variable by way of commutation
+        \begin{equation}
+            \frac{\mathrm{d}}{\mathrm{d\eta_1}}\eta_2\eta_1 = -\frac{\mathrm{d}}{\mathrm{d\eta_1}}\eta_1\eta_2 = -\eta_2
+        \end{equation}
+\end{itemize}
+\end{document}
